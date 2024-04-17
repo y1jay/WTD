@@ -12,12 +12,25 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtAccessStrategy } from './auth/jwtAccess.strategy';
 import { JwtRefreshStrategy } from './auth/jwtRefresh.strategy';
+import { MemberCrown } from './entities/MemberCrown.entity';
+import { Member } from './entities/Member.entity';
+import { MemberNickHistory } from './entities/MemberNickHistory.entity';
+import { MemberTicketHistory } from './entities/MemberTicketHistory.entity';
+import { WhatToDo } from './entities/WhatToDo.entity';
+import { WhatToDoHistory } from './entities/WhatToDoHistory.entity';
+import { MemberLoginHistory } from './entities/MemberLoginHistory.entity';
 
 @Module({
 	imports: [
 		TypeOrmModule.forRoot(databaseConfig),
 		TypeOrmModule.forFeature([
-			//entity
+			MemberCrown,
+			Member,
+			MemberLoginHistory,
+			MemberNickHistory,
+			MemberTicketHistory,
+			WhatToDo,
+			WhatToDoHistory,
 		]),
 		JwtModule.register({
 			secret: baseConfig.jwt.secret,
