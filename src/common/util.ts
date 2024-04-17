@@ -3,7 +3,6 @@ import { DeleteResult, InsertResult, QueryResult, UpdateResult } from 'typeorm';
 import dayjs from 'dayjs';
 import { baseConfig } from 'src/config/base.config';
 import AWS from 'aws-sdk';
-import { CommonService } from 'src/services/common.service';
 
 export const mapOutput = (arr: any) => {
 	return arr.map((val: QueryResult) => output(val).message).includes('fail');
@@ -201,46 +200,29 @@ export const getExpireTime = (str: string) => {
 };
 
 export const uploadFileToBucket = async (file: any, name: any) => {
-	AWS.config.update({
-		accessKeyId: baseConfig.aws.bucket.accessKeyId,
-		secretAccessKey: baseConfig.aws.bucket.secretAccessKey,
-	});
+	// AWS.config.update({
+	// 	accessKeyId: baseConfig.aws.bucket.accessKeyId,
+	// 	secretAccessKey: baseConfig.aws.bucket.secretAccessKey,
+	// });
 	// indonesia/${name}.${file.originalname.split('.').slice(-1)}
-	const s3 = new AWS.S3();
+	// const s3 = new AWS.S3();
 	// console.log(file, '???????');
 	// console.log(name, '???????');
 	try {
 		const key = name;
 
-		await s3
-			.putObject({
-				Bucket: baseConfig.aws.bucket.name,
-				Key: key,
-				Body: file.buffer,
-			})
-			.promise();
+		// await s3
+		// 	.putObject({
+		// 		Bucket: baseConfig.aws.bucket.name,
+		// 		Key: key,
+		// 		Body: file.buffer,
+		// 	})
+		// 	.promise();
 
 		return key;
 	} catch (err) {
 		console.log(err);
 	}
-};
-
-export const mapCacheCommonCode = async (
-	qb: any,
-	subQueries: { column: string; codeKey: string; codeValue: string }[],
-	commonService: CommonService
-): Promise<any> => {
-	const queryResult = await selectQuery(() => qb.getRawMany());
-	const commonCode = await commonService.selectCache();
-
-	for (const row of queryResult) {
-		for (const { column, codeKey, codeValue } of subQueries) {
-			row[column] = commonCode[`${codeKey}_${row[codeValue]}`];
-		}
-	}
-
-	return queryResult;
 };
 
 export const timeChange = (input: { type: string; str: any; end: any }) => {

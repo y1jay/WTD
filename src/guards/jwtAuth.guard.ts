@@ -3,7 +3,7 @@ import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
 import { AuthGuard } from '@nestjs/passport';
 import { baseConfig } from 'src/config/base.config';
-import { Admin } from 'src/interface/user';
+// import { Admin } from 'src/interface/user';
 @Injectable()
 export class jwtAuthGuard extends AuthGuard(['access', 'refresh']) {
 	canActivate(context: ExecutionContext) {

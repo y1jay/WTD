@@ -2,11 +2,10 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
 import { baseConfig } from 'src/config/base.config';
-import { Admin } from '../interface/user';
-import { ManagerService } from 'src/services/manager.service';
+import { User } from '../interface/user';
 @Injectable()
 export class JwtRefreshStrategy extends PassportStrategy(Strategy, 'refresh') {
-	constructor(private readonly manager: ManagerService) {
+	constructor() {
 		console.log(Strategy, 'ST');
 		super({
 			// jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -29,7 +28,7 @@ export class JwtRefreshStrategy extends PassportStrategy(Strategy, 'refresh') {
 			secretOrKey: baseConfig.jwt.secret,
 		});
 	}
-	async validate(payload: Admin) {
+	async validate(payload: any) {
 		// console.log('AAAAAAAAAAA');
 
 		return payload;
