@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { WhatToDo } from './WhatToDo.entity';
 
 // 뭐하지 뭐먹지 이력
@@ -7,8 +7,8 @@ export class WhatToDoHistory {
 	@PrimaryGeneratedColumn({ type: 'int' })
 	wtdHistoryIdx: number;
 
-	@ManyToOne(() => WhatToDo)
-	wtdIdx: string;
+	@Column()
+	wtdIdx: number;
 
 	@Column()
 	result: string;

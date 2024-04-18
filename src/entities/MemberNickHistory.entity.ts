@@ -6,7 +6,7 @@ export class MemberNickHistory {
 	@PrimaryGeneratedColumn({ type: 'int' })
 	mnhIdx: number;
 
-	@ManyToOne(() => Member)
+	@Column()
 	memberIdx: number;
 
 	// 이전 닉네임
@@ -19,7 +19,7 @@ export class MemberNickHistory {
 
 	// 사용여부
 	@Column()
-	useYn: string;
+	useYn: number;
 
 	// 등록일시
 	@Column({ type: 'bigint' })

@@ -1,5 +1,4 @@
 export interface MemberI {
-	memberIdx: number;
 	id: string;
 	pw: string;
 	nick: string;

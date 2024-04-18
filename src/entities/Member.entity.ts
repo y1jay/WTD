@@ -1,7 +1,7 @@
-import { Column, Entity, JoinColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { MemberCrown } from './MemberCrown.entity';
 
-@Entity('member')
+@Entity('Member')
 export class Member {
 	@PrimaryGeneratedColumn({ type: 'int' })
 	memberIdx: number;
@@ -57,8 +57,5 @@ export class Member {
 	// 탈퇴ip
 	@Column()
 	leaveIp: string;
-
-	@JoinColumn({ name: 'memberIdx' })
-	mcIdx: MemberCrown;
 }
 

@@ -1,5 +1,5 @@
 export const baseConfig = {
-	host: 'https://indonesia.store5000.com',
+	host: '',
 	jwt: {
 		secret: 'wtd',
 		expiresIn: {

@@ -7,7 +7,7 @@ export class MemberTicketHistory {
 	@PrimaryGeneratedColumn({ type: 'int' })
 	mthIdx: number;
 
-	@ManyToOne(() => Member)
+	@Column()
 	memberIdx: number;
 
 	// 사용 및 획득 티켓
@@ -22,7 +22,7 @@ export class MemberTicketHistory {
 	@Column()
 	afterCount: number;
 
-	// 유료 무료 타입
+	// 유료1 무료0 타입
 	@Column()
 	type: number;
 

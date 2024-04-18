@@ -8,16 +8,16 @@ export class MemberCrown {
 	mcIdx: number;
 
 	// 회원 일련번호
-	@ManyToOne(() => Member)
+	@Column()
 	memberIdx: number;
 
-	// 호칭
+	// 호칭테이블
 	@Column()
-	crown: string;
+	cIdx: number;
 
 	// 사용여부
-	@Column()
-	useYn: string;
+	@Column({ type: 'tinyint' })
+	useYn: number;
 
 	// 북마크 여부
 	@Column({ type: 'tinyint' })

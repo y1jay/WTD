@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { getNow, hasProperty } from 'src/common/util';
 import { baseConfig } from 'src/config/base.config';
+import { MemberService } from 'src/services/member.service';
 
 export interface Response<T> {
 	statusCode: number;
@@ -18,19 +19,25 @@ export interface Response<T> {
 	error?: string;
 	data?: T;
 }
-
 @Injectable()
 export class ResponseInterceptor<T> implements NestInterceptor<T, Response<T>> {
-	constructor() // private jwtService: JwtService,
-	{}
+	constructor(private readonly memberService: MemberService) {} // private jwtService: JwtService,
 
 	async intercept(context: ExecutionContext, next: CallHandler): Promise<Observable<any>> {
 		const request = context.switchToHttp().getRequest();
 		console.log(context.getHandler().name, 'CONTEXT');
 		return next.handle().pipe(
 			map(async (data) => {
-				if ([''].includes(context.getHandler().name)) {
-					console.log(data, 'DATA@!#@!#@!#!#!@#@!@!');
+				if (request['user']) {
+					if (
+						request['user'].deviceUuid !=
+						(await this.memberService.MemberRaw(request['user'].memberIdx)).deviceUuid
+					) {
+						return {
+							statusCode: 404,
+							message: 'duplicate',
+						};
+					}
 					return data;
 				}
 

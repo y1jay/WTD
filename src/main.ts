@@ -18,14 +18,14 @@ async function bootstrap() {
 	// 	// exposedHeaders: ['Authorization'], // * 사용할 헤더 추가.
 	// });
 	const corsOptions: CorsOptions = {
-		origin: ['http://localhost:3000'], // 프론트엔드 앱의 도메인을 지정
+		origin: ['http://localhost:1111'], // 프론트엔드 앱의 도메인을 지정
 		credentials: true, // 인증 정보 (쿠키 등)를 포함할 경우 true로 설정
 	};
 	app.enableCors(corsOptions);
 
 	SwaggerModule.setup('ApiDocument', app, document);
 	app.use(cookieParser());
-	await app.listen(8000);
+	await app.listen(20000);
 }
 
 bootstrap();

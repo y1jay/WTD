@@ -7,7 +7,7 @@ export class MemberLoginHistory {
 	mlhIdx: number;
 
 	// 일련번호
-	@ManyToOne(() => Member)
+	@Column()
 	memberIdx: number;
 
 	// 탈퇴일시

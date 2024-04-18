@@ -6,6 +6,10 @@ export class WhatToDo {
 	@PrimaryGeneratedColumn({ type: 'int' })
 	wtdIdx: number;
 
+	// 타입 0: 뭐먹지 , 1: 뭐하지, 2~~
+	@Column({ type: 'tinyint' })
+	type: number;
+
 	// 카테고리
 	@Column()
 	category: string;

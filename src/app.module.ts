@@ -19,6 +19,9 @@ import { MemberTicketHistory } from './entities/MemberTicketHistory.entity';
 import { WhatToDo } from './entities/WhatToDo.entity';
 import { WhatToDoHistory } from './entities/WhatToDoHistory.entity';
 import { MemberLoginHistory } from './entities/MemberLoginHistory.entity';
+import { MemberController } from './controllers/member.controller';
+import { MemberService } from './services/member.service';
+import { Crown } from './entities/Crown.entity';
 
 @Module({
 	imports: [
@@ -31,6 +34,7 @@ import { MemberLoginHistory } from './entities/MemberLoginHistory.entity';
 			MemberTicketHistory,
 			WhatToDo,
 			WhatToDoHistory,
+			Crown,
 		]),
 		JwtModule.register({
 			secret: baseConfig.jwt.secret,
@@ -39,16 +43,17 @@ import { MemberLoginHistory } from './entities/MemberLoginHistory.entity';
 
 		PassportModule,
 	],
-	controllers: [AppController],
+	controllers: [AppController, MemberController],
 	providers: [
 		{ provide: APP_INTERCEPTOR, useClass: ResponseInterceptor },
-		{
-			provide: APP_GUARD,
-			useClass: jwtAuthGuard,
-		},
+		// {
+		// 	provide: APP_GUARD,
+		// 	useClass: jwtAuthGuard,
+		// },
 		JwtAccessStrategy,
 		JwtRefreshStrategy,
 		AppService,
+		MemberService,
 	],
 	exports: [PassportModule],
 })
