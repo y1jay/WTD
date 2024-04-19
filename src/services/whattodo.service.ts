@@ -89,6 +89,7 @@ export class WhattodoService {
 			const result = await wtdSub.getRawOne();
 			const history = this.wtdHistory.save({
 				wtdIdx: result.wtdIdx,
+				memberIdx: params.memberIdx,
 				result: result.result,
 				useYn: 1,
 				regDate: Number(getNow()),

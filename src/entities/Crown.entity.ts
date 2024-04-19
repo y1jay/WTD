@@ -1,7 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm';
 
 // 호칭
 @Entity('Crown')
+@Index(['cIdx', 'useYn'])
 export class Crown {
 	@PrimaryGeneratedColumn({ type: 'int' })
 	cIdx: number;

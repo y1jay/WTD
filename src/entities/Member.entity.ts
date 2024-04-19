@@ -1,7 +1,9 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { MemberCrown } from './MemberCrown.entity';
 
 @Entity('Member')
+@Index('memberIdx')
+@Index('id')
 export class Member {
 	@PrimaryGeneratedColumn({ type: 'int' })
 	memberIdx: number;

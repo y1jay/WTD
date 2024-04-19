@@ -1,8 +1,10 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, Index, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Member } from './Member.entity';
 
 // 호칭
 @Entity('MemberCrown')
+@Index('memberIdx')
+@Index('cIdx')
 export class MemberCrown {
 	@PrimaryGeneratedColumn({ type: 'int' })
 	mcIdx: number;
